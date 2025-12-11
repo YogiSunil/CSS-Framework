@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Developer's Roadmap - ACSD Demo</title>
   <link rel="stylesheet" href="acsd.css">
+  <script type="module" src="./frmwk-card.js"></script>
+  <script type="module" src="./frmwk-tabs.js"></script>
+  <script type="module" src="./frmwk-carousel.js"></script>
   <style>
     /* Layout-only helpers for the demo page */
     .demo-hero {
@@ -456,10 +459,55 @@ async function fetchUserData(userId) {
 
     <section>
       <h2>Visual Learning</h2>
-      <figure>
-        <img src="https://via.placeholder.com/800x400/5588ff/ffffff?text=Web+Development+Roadmap" alt="Web Development Roadmap Visualization">
-        <figcaption>A visual representation of the web development learning path</figcaption>
-      </figure>
+      <frmwk-card variant="elevated">
+        <h3 slot="title">Framework Card Component</h3>
+        <p slot="subtitle">Static, token-driven, and slotted</p>
+        <p>This card is rendered by the <code>&lt;frmwk-card&gt;</code> Web Component, using slots for header/title/subtitle/body/footer and your design tokens for spacing, color, and typography.</p>
+        <div slot="footer" class="flex gap-sm">
+          <button class="btn btn--primary btn--sm">Primary</button>
+          <button class="btn btn--outline btn--sm">Outline</button>
+        </div>
+      </frmwk-card>
+      
+      <frmwk-tabs>
+        <div slot="panel" label="Overview">
+          <p>Interactive tabs component with ARIA roles, tokenized styles, and a <code>change</code> CustomEvent.</p>
+        </div>
+        <div slot="panel" label="Details">
+          <ul>
+            <li>Uses <code>connectedCallback</code> and <code>disconnectedCallback</code></li>
+            <li>Accepts a <code>label</code> attribute on each panel</li>
+            <li>Keyboard handling can be expanded</li>
+          </ul>
+        </div>
+        <div slot="panel" label="API">
+          <p>Listen for <code>change</code> to know which tab is active.</p>
+        </div>
+      </frmwk-tabs>
+
+        <frmwk-carousel interval="4000">
+          <img alt="Slide 1" src="data:image/svg+xml;utf8,
+            %3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E
+            %3Crect width='100%25' height='100%25' fill='%235588ff'/%3E
+            %3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='sans-serif' font-size='48'%3ESlide 1%3C/text%3E
+            %3C/svg%3E" />
+          <img alt="Slide 2" src="data:image/svg+xml;utf8,
+            %3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E
+            %3Crect width='100%25' height='100%25' fill='%2333aa88'/%3E
+            %3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='sans-serif' font-size='48'%3ESlide 2%3C/text%3E
+            %3C/svg%3E" />
+          <img alt="Slide 3" src="data:image/svg+xml;utf8,
+            %3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E
+            %3Crect width='100%25' height='100%25' fill='%23cc5555'/%3E
+            %3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='sans-serif' font-size='48'%3ESlide 3%3C/text%3E
+            %3C/svg%3E" />
+        </frmwk-carousel>
+          <img src="https://via.placeholder.com/800x400/33aa88/ffffff?text=Slide+2" alt="Slide 2">
+        </figure>
+        <figure>
+          <img src="https://via.placeholder.com/800x400/cc5555/ffffff?text=Slide+3" alt="Slide 3">
+        </figure>
+      </frmwk-carousel>
     </section>
 
     <section>

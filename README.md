@@ -256,3 +256,76 @@ A drop-in, classless-first CSS framework for marketing pages, docs/blogs, and in
 
 ## Status
 Version: 1.0.0 · Last updated: December 2025
+
+## Web Components
+
+This framework ships three token-driven Web Components that complement the CSS system. They use the same design tokens (colors, spacing, typography, radii, shadows) to stay visually consistent.
+
+### `<frmwk-card>` (Visual / Static)
+Problem: Developers need a consistent, drop-in card container with optional header, subtitle, and footer slots without adding bespoke CSS.
+
+Why it belongs: Cards are a core pattern across marketing pages, docs, and dashboards. This component standardizes spacing, borders, and typography using framework tokens.
+
+Usage:
+```html
+<frmwk-card variant="elevated">
+  <h3 slot="title">Account Status</h3>
+  <p slot="subtitle">Everything looks good.</p>
+  <p>Body content goes here.</p>
+  <div slot="footer">
+    <button class="btn btn--primary btn--sm">Action</button>
+  </div>
+  <!-- Slots: header, title, subtitle, footer, default -->
+</frmwk-card>
+```
+Notes: `variant` supports `elevated`, `dark`, `bordered`. Accessible by default with semantic slots; no interactive behavior.
+
+Future improvements: Add `aria-labelledby` wiring to tie title/subtitle slots automatically; add `outline` variant.
+
+### `<frmwk-tabs>` (Interactive)
+Problem: Developers need accessible tabs to organize related content panels with minimal markup.
+
+Why it belongs: Tabs are common in dashboards/docs. The component handles tablist UI, manages selected state, and emits events.
+
+Usage:
+```html
+<frmwk-tabs>
+  <div slot="panel" label="Overview">Overview content…</div>
+  <div slot="panel" label="Details">Details content…</div>
+  <div slot="panel" label="API">API content…</div>
+</frmwk-tabs>
+```
+Behavior: Click to switch panels; dispatches `change` with `{ index, label }`. Uses `connectedCallback`/`disconnectedCallback`, ARIA roles (`tablist`, `tab`).
+
+Accessibility: Visible focus states via tokens; keyboard support can be extended (ArrowLeft/ArrowRight, Home/End).
+
+Future improvements: Add full keyboard navigation and `aria-controls` on tabs; expose selected index as an attribute.
+
+### `<frmwk-carousel>` (Smart)
+Problem: Teams need a lightweight, token-aligned carousel for hero banners or image slides without external libraries.
+
+Why it belongs: A small, auto-advancing slideshow covers common marketing needs while staying within the design system.
+
+Usage:
+```html
+<frmwk-carousel interval="3000">
+  <figure><img src="slide1.jpg" alt="Slide 1"></figure>
+  <figure><img src="slide2.jpg" alt="Slide 2"></figure>
+  <figure><img src="slide3.jpg" alt="Slide 3"></figure>
+</frmwk-carousel>
+```
+Behavior: Auto-advances based on `interval` (ms). Set `paused` to stop auto-play. Internal methods `_next()`, `_prev()`, `_update()` manage state; emits `change` with `{ index }`.
+
+Accessibility: Focusable controls, visible focus rings, dots with `aria-current`. Consider adding `aria-live` for announcements.
+
+Future improvements: Pause-on-hover, keyboard navigation, swipe gestures, and `aria-live` polite updates.
+
+### Integration
+- Import scripts in your page: 
+```html
+<script type="module" src="./frmwk-card.js"></script>
+<script type="module" src="./frmwk-tabs.js"></script>
+<script type="module" src="./frmwk-carousel.js"></script>
+```
+- Components are theme-aware via tokens (light/dark) and use low specificity.
+- External styling can target parts (e.g., `frmwk-carousel::part(controls)`).
