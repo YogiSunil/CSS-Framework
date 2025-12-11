@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Developer's Roadmap - ACSD Demo</title>
+  <link rel="stylesheet" href="acsd.css">
+  <style>
+    /* Layout-only helpers for the demo page */
+    .demo-hero {
+      padding-block: var(--space-2xl);
+      text-align: center;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .demo-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-top: var(--space-lg);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: var(--space-md);
+      right: var(--space-md);
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="theme-toggle">
+    <button class="btn btn--sm btn--outline" type="button" onclick="document.body.classList.toggle('theme-dark')">
+      Toggle Theme
+    </button>
+  </div>
+
+  <nav class="navbar">
+    <a class="navbar__brand" href="#">WebDev Roadmap</a>
+    <ul class="navbar__nav">
+      <li class="navbar__item"><a class="navbar__link navbar__link--active" href="#intro">Introduction</a></li>
+      <li class="navbar__item"><a class="navbar__link" href="#frontend">Frontend</a></li>
+      <li class="navbar__item"><a class="navbar__link" href="#backend">Backend</a></li>
+      <li class="navbar__item"><a class="navbar__link" href="#resources">Resources</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <header class="demo-hero">
+      <p class="badge badge--neutral">Version 2025</p>
+      <h1>Web Developer's Roadmap</h1>
+      <p class="text-lg text-muted">Classless defaults, tokens, components, and utilities in one tiny CSS file.</p>
+      <div class="demo-actions">
+        <a href="#start" class="btn btn--primary btn--lg">
+          <span class="btn__icon" aria-hidden="true">&#9656;</span>
+          Get Started
+        </a>
+        <a href="#download" class="btn btn--outline btn--lg">
+          <span class="btn__icon" aria-hidden="true">↓</span>
+          Download PDF
+        </a>
+      </div>
+    </header>
+
+    <section id="intro">
+      <h2>Welcome to Web Development</h2>
+
+      <div class="alert alert--info">
+        <div class="alert__icon" aria-hidden="true">i</div>
+        <div class="alert__content">
+          <p class="alert__title">Getting Started</p>
+          <p class="alert__message">This roadmap works for beginners and experienced developers. Move steadily and focus on concepts before tools.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--success">
+        <div class="alert__icon" aria-hidden="true">&#10003;</div>
+        <div class="alert__content">
+          <p class="alert__title">Success Tip</p>
+          <p class="alert__message">Build small projects as you learn. Shipping and iterating beats passive study.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--warning">
+        <div class="alert__icon" aria-hidden="true">!</div>
+        <div class="alert__content">
+          <p class="alert__title">Important Note</p>
+          <p class="alert__message">The web moves fast. Stay close to official docs and trusted community resources.</p>
+        </div>
+      </div>
+
+      <p>Web development blends <strong>creativity</strong> and <em>problem solving</em>. Whether you are building landing pages, dashboards, or APIs, this roadmap gives you a practical sequence to follow.</p>
+
+      <blockquote>
+        <p>"The best way to predict the future is to implement it."</p>
+        <cite>&mdash; David Heinemeier Hansson</cite>
+      </blockquote>
+    </section>
+
+    <section id="frontend">
+      <h2>Frontend Development Path</h2>
+      <p>Master the client side with semantic HTML, modern CSS, and JavaScript.</p>
+
+      <div class="demo-grid">
+        <div class="card">
+          <div class="card__header">
+            <h3 class="card__title">HTML &amp; CSS <span class="badge badge--success">Essential</span></h3>
+            <p class="card__subtitle">Foundation of the web</p>
+          </div>
+          <div class="card__body">
+            <p>Start with semantic HTML5 and modern CSS (Flexbox, Grid, and custom properties).</p>
+            <ul>
+              <li>Semantic markup</li>
+              <li>Accessibility basics</li>
+              <li>Responsive layouts</li>
+              <li>Design tokens</li>
+            </ul>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--primary btn--sm">Learn More</button>
+            <span class="badge badge--info">Beginner</span>
+          </div>
+        </div>
+
+        <div class="card card--elevated">
+          <div class="card__header">
+            <h3 class="card__title">JavaScript <span class="badge badge--primary">Core</span></h3>
+            <p class="card__subtitle">Language of the web</p>
+          </div>
+          <div class="card__body">
+            <p>Learn modern JavaScript (ES modules, async/await, functional patterns).</p>
+            <ul>
+              <li>ES6+ syntax</li>
+              <li>DOM and events</li>
+              <li>Data fetching</li>
+              <li>Tooling and bundlers</li>
+            </ul>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--primary btn--sm">Learn More</button>
+            <span class="badge badge--warning">Intermediate</span>
+          </div>
+        </div>
+
+        <div class="card card--bordered card--inset">
+          <div class="card__header">
+            <h3 class="card__title">Frameworks <span class="badge badge--danger">Advanced</span></h3>
+            <p class="card__subtitle">Build complex UIs</p>
+          </div>
+          <div class="card__body">
+            <p>Pick a framework (React, Vue, Angular, Svelte) and learn state, routing, and performance.</p>
+            <ul>
+              <li>Component architecture</li>
+              <li>State management</li>
+              <li>Routing</li>
+              <li>Performance tuning</li>
+            </ul>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--primary btn--sm">Learn More</button>
+            <span class="badge badge--danger">Advanced</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="backend">
+      <h2>Backend Development</h2>
+      <p>Explore server-side technologies and databases.</p>
+
+      <div class="tabs">
+        <ul class="tabs__list">
+          <li class="tabs__item">
+            <button class="tabs__button tabs__button--active">Languages</button>
+          </li>
+          <li class="tabs__item">
+            <button class="tabs__button">Databases</button>
+          </li>
+          <li class="tabs__item">
+            <button class="tabs__button">DevOps</button>
+          </li>
+        </ul>
+        <div class="tabs__panel">
+          <h3>Backend Languages</h3>
+          <p>Pick one language and get comfortable with its ecosystem:</p>
+          <dl>
+            <dt>Node.js (JavaScript)</dt>
+            <dd>Great for real-time apps and when you want a single language across the stack.</dd>
+            <dt>Python (Django/Flask)</dt>
+            <dd>Readable syntax and mature frameworks make it beginner-friendly.</dd>
+            <dt>Java (Spring Boot)</dt>
+            <dd>Enterprise-grade with rich tooling and ecosystem.</dd>
+            <dt>Go</dt>
+            <dd>Fast, typed, and ideal for services and concurrency.</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technology Comparison</h2>
+      <p>Compare popular web technologies:</p>
+
+      <table class="table table--striped table--bordered">
+        <thead>
+          <tr>
+            <th>Technology</th>
+            <th>Type</th>
+            <th>Difficulty</th>
+            <th>Use Case</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>React</strong></td>
+            <td>Library</td>
+            <td>Medium</td>
+            <td>Dynamic UIs</td>
+            <td><span class="badge badge--success">Popular</span></td>
+          </tr>
+          <tr>
+            <td><strong>Vue.js</strong></td>
+            <td>Framework</td>
+            <td>Easy</td>
+            <td>Progressive apps</td>
+            <td><span class="badge badge--success">Growing</span></td>
+          </tr>
+          <tr>
+            <td><strong>Angular</strong></td>
+            <td>Framework</td>
+            <td>Hard</td>
+            <td>Enterprise apps</td>
+            <td><span class="badge badge--info">Stable</span></td>
+          </tr>
+          <tr>
+            <td><strong>Svelte</strong></td>
+            <td>Compiler</td>
+            <td>Easy</td>
+            <td>Fast UIs</td>
+            <td><span class="badge badge--warning">Emerging</span></td>
+          </tr>
+          <tr>
+            <td><strong>Next.js</strong></td>
+            <td>Framework</td>
+            <td>Medium</td>
+            <td>Full-stack React</td>
+            <td><span class="badge badge--primary">Trending</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Learning Progress</h2>
+      <p>Track your roadmap progress across key skills.</p>
+      <div class="stack">
+        <div>
+          <div class="flex" style="justify-content: space-between; align-items: center;">
+            <span>HTML &amp; CSS</span>
+            <span class="text-muted text-sm">80%</span>
+          </div>
+          <div class="progress progress--success">
+            <div class="progress__bar" style="width: 80%;"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex" style="justify-content: space-between; align-items: center;">
+            <span>JavaScript</span>
+            <span class="text-muted text-sm">65%</span>
+          </div>
+          <div class="progress">
+            <div class="progress__bar" style="width: 65%;"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex" style="justify-content: space-between; align-items: center;">
+            <span>Backend</span>
+            <span class="text-muted text-sm">45%</span>
+          </div>
+          <div class="progress progress--warning">
+            <div class="progress__bar" style="width: 45%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Code Examples</h2>
+      <p>Here's a simple example of modern JavaScript:</p>
+
+      <pre><code>// Async function example
+async function fetchUserData(userId) {
+  try {
+    const response = await fetch(`/api/users/${userId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}</code></pre>
+
+      <p>You can also write inline code like <code>const greeting = "Hello World";</code> within a paragraph.</p>
+      <p>As the famous quote goes: <q>Code is read more often than it is written.</q></p>
+    </section>
+
+    <section id="resources">
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How long does it take to become a web developer?</summary>
+        <p>The timeline varies with your background and pace. With steady practice, you can build job-ready skills in 6-12 months.</p>
+      </details>
+
+      <details>
+        <summary>Do I need a computer science degree?</summary>
+        <p>No. A strong portfolio, problem-solving skills, and the ability to learn quickly matter more.</p>
+      </details>
+
+      <details>
+        <summary>Should I learn frontend or backend first?</summary>
+        <p>Most beginners start with frontend for quick feedback, then add backend skills.</p>
+      </details>
+
+      <details>
+        <summary>What projects should I build?</summary>
+        <p>Begin with a portfolio, todo app, or weather dashboard. Add complexity with e-commerce, blogs, or dashboards.</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>Subscribe to Updates</h2>
+      <p>Get the latest web development resources delivered to your inbox.</p>
+
+      <form>
+        <fieldset>
+          <legend>Contact Information</legend>
+
+          <div class="mb-md">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+          </div>
+
+          <div class="mb-md">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+          </div>
+
+          <div class="mb-md">
+            <label for="experience">Experience Level</label>
+            <select id="experience" name="experience">
+              <option value="">Select your level</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div class="mb-md">
+            <label for="interests">Areas of Interest</label>
+            <textarea id="interests" name="interests" placeholder="Tell us what you want to learn..."></textarea>
+          </div>
+
+          <div class="mb-md">
+            <label>
+              <input type="checkbox" name="newsletter">
+              Subscribe to weekly newsletter
+            </label>
+          </div>
+
+          <div class="mb-md">
+            <label>Preferred Learning Format:</label>
+            <label>
+              <input type="radio" name="format" value="video">
+              Video Tutorials
+            </label>
+            <label>
+              <input type="radio" name="format" value="text">
+              Written Articles
+            </label>
+            <label>
+              <input type="radio" name="format" value="both" checked>
+              Both
+            </label>
+          </div>
+
+          <div class="flex gap-md">
+            <button type="submit" class="btn btn--primary">Subscribe</button>
+            <button type="reset" class="btn btn--secondary">Reset</button>
+            <button type="button" class="btn btn--outline" disabled>Disabled</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+    <section>
+      <h2>Call to Action</h2>
+      <p>Ready to start your journey? Check out these resources:</p>
+
+      <div class="flex gap-md mb-lg" style="flex-wrap: wrap;">
+        <button class="btn btn--primary">Primary Action</button>
+        <button class="btn btn--secondary">Secondary Action</button>
+        <button class="btn btn--success">Success Action</button>
+        <button class="btn btn--danger">Danger Action</button>
+      </div>
+
+      <div class="flex gap-md mb-lg" style="flex-wrap: wrap;">
+        <button class="btn btn--primary btn--sm">Small Button</button>
+        <button class="btn btn--primary">Regular Button</button>
+        <button class="btn btn--primary btn--lg">Large Button</button>
+      </div>
+
+      <div class="flex gap-md" style="flex-wrap: wrap;">
+        <button class="btn btn--outline">
+          <span class="btn__icon" aria-hidden="true">&#128065;</span>
+          Outlined
+        </button>
+        <button class="btn btn--primary" disabled>Disabled</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Learning Resources</h2>
+
+      <h3>Essential Tools</h3>
+      <ul>
+        <li>Code Editor: VS Code, Sublime Text, or WebStorm</li>
+        <li>Version Control: Git and GitHub</li>
+        <li>Browser DevTools: Chrome DevTools or Firefox Developer Tools</li>
+        <li>Package Manager: npm or yarn
+          <ul>
+            <li>Learn basic commands</li>
+            <li>Understand package.json</li>
+            <li>Manage dependencies</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Learning Path</h3>
+      <ol>
+        <li>Master HTML and CSS fundamentals</li>
+        <li>Learn JavaScript basics and DOM manipulation</li>
+        <li>Understand responsive design and accessibility</li>
+        <li>Choose and learn a frontend framework</li>
+        <li>Explore backend technologies</li>
+        <li>Build full-stack projects</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Visual Learning</h2>
+      <figure>
+        <img src="https://via.placeholder.com/800x400/5588ff/ffffff?text=Web+Development+Roadmap" alt="Web Development Roadmap Visualization">
+        <figcaption>A visual representation of the web development learning path</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Technology Stack <span class="badge badge--neutral">2025</span></h2>
+      <p>
+        Technologies used in this project:
+        <span class="badge badge--primary">HTML5</span>
+        <span class="badge badge--primary">CSS3</span>
+        <span class="badge badge--secondary">JavaScript</span>
+        <span class="badge badge--success">Responsive</span>
+        <span class="badge badge--info">Accessible</span>
+        <span class="badge badge--warning">In Progress</span>
+      </p>
+    </section>
+
+    <hr>
+
+    <footer class="text-center">
+      <h3>Continue Your Journey</h3>
+      <p>Web development is continuous learning. Stay curious, build often, and share your work.</p>
+      <p class="text-muted text-sm">
+        Created with the ACSD CSS Framework |
+        <a href="https://github.com">View on GitHub</a> |
+        <a href="#top">Back to Top</a>
+      </p>
+      <p class="text-muted text-sm">© 2025 Web Developer's Roadmap. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    // Simple tab switching demo
+    document.querySelectorAll('.tabs__button').forEach(button => {
+      button.addEventListener('click', (event) => {
+        document.querySelectorAll('.tabs__button').forEach(btn => btn.classList.remove('tabs__button--active'));
+        event.currentTarget.classList.add('tabs__button--active');
+      });
+    });
+  </script>
+</body>
+</html>
