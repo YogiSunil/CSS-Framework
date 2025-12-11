@@ -165,367 +165,94 @@ ACSD uses CSS `@layer` for predictable cascade control:
    - Empty by default
    - Use for project-specific overrides
 
-## Design Tokens
 
-All design decisions are codified as CSS custom properties in the `tokens` layer:
+# ACSD CSS Framework
 
-### Typography Tokens
+A drop-in, classless-first CSS framework for marketing pages, docs/blogs, and internal tools. Link one file and get sensible defaults, tokens, components, utilities, theming, and print-ready output.
 
-```css
---font-family-sans: system-ui, sans-serif;
---font-family-mono: "SF Mono", Monaco, monospace;
-
---font-size-xs: 0.75rem;
---font-size-sm: 0.875rem;
---font-size-body: 1rem;
---font-size-h1: 2.25rem;
-
---font-weight-normal: 400;
---font-weight-bold: 700;
-
---line-height-tight: 1.25;
---line-height-normal: 1.5;
-```
-
-### Spacing Tokens
-
-```css
---space-xs: 0.25rem;
---space-sm: 0.5rem;
---space-md: 1rem;
---space-lg: 1.5rem;
---space-xl: 2rem;
-```
-
-### Color Tokens
-
-Colors use OKLCH for perceptually uniform scaling:
-
-```css
-/* Light theme */
---color-bg: oklch(0.98 0.005 250);
---color-fg: oklch(0.25 0.02 250);
---color-primary: oklch(0.55 0.18 260);
---color-success: oklch(0.60 0.15 145);
---color-danger: oklch(0.60 0.20 25);
-```
-
-### Customizing Tokens
-
-Override tokens in your own stylesheet:
-
-```css
-@layer overrides {
-  :root {
-    --color-primary: oklch(0.60 0.20 180); /* Teal instead of blue */
-    --space-md: 1.25rem; /* Larger base spacing */
-    --radius-md: 0.75rem; /* More rounded corners */
-  }
-}
-```
-
-## Components
-
-### Button
-
-**Variants:** `btn--secondary`, `btn--danger`  
-**Sizes:** `btn--sm`, `btn--lg`
+## Quick Start
 
 ```html
-<button class="btn">Default</button>
-<button class="btn btn--secondary">Secondary</button>
-<button class="btn btn--danger btn--lg">Large Danger</button>
-<button class="btn" disabled>Disabled</button>
+<link rel="stylesheet" href="acsd.css">
+<body>
+  <main class="container">
+    <h1>Hello, world</h1>
+    <p>Semantic HTML is styled automatically.</p>
+  </main>
+</body>
 ```
 
-### Card
+- Dark mode: add `class="theme-dark"` to `<body>` or `<html>`.
+- Demo: open `demo.html` to see all elements, components, and utilities in action.
 
-**Parts:** `card__header`, `card__body`, `card__footer`, `card__image`  
-**Variants:** `card--elevated`, `card--dark`
+## Architecture (Layers)
 
-```html
-<div class="card card--elevated">
-  <img src="image.jpg" class="card__image">
-  <div class="card__header">Title</div>
-  <div class="card__body">Content</div>
-  <div class="card__footer">Footer</div>
-</div>
-```
+`@layer tokens, base, components, utilities, overrides;`
 
-### Alert
+- **tokens**: design tokens only (colors, spacing, typography, radius, shadows, transitions, focus)
+- **base**: classless element styling (body, headings, text, code, lists, tables, forms, media, details)
+- **components**: BEM components (`.btn`, `.card`, `.alert`, `.badge`, `.navbar`, `.tabs`, `.table` variants, accordion styling, progress)
+- **utilities**: single-purpose helpers (display, spacing, text, layout, width, color)
+- **overrides**: reserved for consumer overrides
 
-**Variants:** `alert--info`, `alert--success`, `alert--warning`, `alert--danger`
+## Design Tokens (high level)
+- Typography: sans/mono families, sizes xs–h1, weights normal–bold, line-heights
+- Spacing: `--space-xs` … `--space-3xl`
+- Colors: OKLCH palette for bg/fg, primary/secondary/accent, success/warning/danger/info, borders, links
+- Radius: sm/md/lg/xl/full; Shadows: sm/md/lg/xl; Transitions: fast/base/slow
+- Focus ring: width/offset/color; Layout max widths: prose/container/wide
+- Dark theme: `.theme-dark` swaps the color tokens only
 
-```html
-<div class="alert alert--warning">
-  <div class="alert__title">Warning</div>
-  <div class="alert__message">Please review before continuing.</div>
-</div>
-```
+## Base Styling (classless)
+- Headings, paragraphs, inline text (strong/em/small), code/pre, blockquote/q
+- Lists (ul/ol/li), definition lists (dl/dt/dd)
+- Links: hover/active/visited/focus-visible with tokenized focus rings
+- Tables: thead/tbody/th/td with hover rows
+- Media: figure/figcaption/img
+- Forms: fieldset/legend/label/input/textarea/select/button (hover, focus, disabled); details/summary
 
-### Badge
+## Components (token-driven, BEM)
+- **Buttons**: `.btn` + variants `--primary`, `--secondary`, `--danger`, `--success`, `--outline`; sizes `--sm`, `--lg`; focus + disabled states
+- **Cards**: `.card` with `__header/__title/__subtitle/__body/__footer/__image`; variants `--elevated`, `--dark`, `--bordered`, `--inset`
+- **Alerts**: `.alert` with `__icon/__content/__title/__message`; variants `--info`, `--success`, `--warning`, `--danger`
+- **Badges**: `.badge` with variants `--primary`, `--secondary`, `--success`, `--danger`, `--warning`, `--info`, `--neutral`
+- **Navbar**: brand + nav links, active state; `--dark` variant
+- **Tabs**: list/items/buttons with active state and panel area
+- **Accordion**: styled native `<details>/<summary>`
+- **Table variants**: `.table`, modifiers `--striped`, `--compact`, `--bordered`
+- **Progress**: `.progress` with bar and variants `--success`, `--warning`
 
-**Variants:** `badge--primary`, `badge--secondary`, `badge--success`, `badge--warning`, `badge--danger`, `badge--info`
+## Utilities (low-specificity, token-based)
+- **Display**: `.flex`, `.grid`, `.block`, `.inline`, `.inline-block`, `.hidden`
+- **Spacing**: `mt|mb|ml|mr-{xs|sm|md|lg|xl}`, `p-{xs|sm|md|lg|xl}`, `pt|pb-{xs|sm|md|lg}`, `gap-{xs|sm|md|lg}`
+- **Text**: `.text-left`, `.text-center`, `.text-right`, `.text-muted`, `.text-primary`, `.text-sm`, `.text-lg`, `.text-bold`
+- **Layout**: `.container`, `.prose`, `.stack`, `.stack--sm`, `.stack--lg`
+- **Width**: `.w-full`, `.w-auto`
+- **Color**: `.bg-primary`, `.bg-secondary`, `.fg-muted`
 
-```html
-<span class="badge badge--success">Active</span>
-```
-
-### Navbar
-
-**Parts:** `navbar__brand`, `navbar__nav`, `navbar__link`
-
-```html
-<nav class="navbar">
-  <a href="#" class="navbar__brand">Brand</a>
-  <ul class="navbar__nav">
-    <li><a href="#" class="navbar__link navbar__link--active">Home</a></li>
-    <li><a href="#" class="navbar__link">About</a></li>
-  </ul>
-</nav>
-```
-
-### Table
-
-**Variants:** `table--striped`, `table--compact`, `table--bordered`
-
-```html
-<table class="table table--striped">
-  <thead>
-    <tr><th>Header</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Data</td></tr>
-  </tbody>
-</table>
-```
-
-## Utilities
-
-### Display
-
-`.flex`, `.grid`, `.block`, `.inline-block`, `.hidden`
-
-### Spacing
-
-**Margin:** `.mt-{size}`, `.mb-{size}`  
-**Padding:** `.p-{size}`  
-**Sizes:** `xs`, `sm`, `md`, `lg`, `xl`
-
-### Text
-
-`.text-left`, `.text-center`, `.text-right`  
-`.text-muted`, `.text-primary`, `.text-success`, `.text-danger`
-
-### Layout
-
-`.container` - Max-width container with padding  
-`.container-prose` - Narrow container for readable text  
-`.stack` - Vertical spacing between children
-
-### Flexbox
-
-`.flex-col`, `.flex-wrap`  
-`.items-center`, `.justify-center`, `.justify-between`  
-`.gap-sm`, `.gap-md`, `.gap-lg`
-
-### Background
-
-`.bg-primary`, `.bg-subtle`, `.bg-muted`
-
-### Sizing
-
-`.w-full`, `.h-auto`
-
-## Theming
-
-### Dark Theme
-
-Add `theme-dark` class to `<html>` or `<body>`:
-
-```html
-<html class="theme-dark">
-  <!-- All colors automatically adjust -->
-</html>
-```
-
-Toggle programmatically:
-
-```javascript
-document.documentElement.classList.toggle('theme-dark');
-```
-
-### Custom Themes
-
-Create custom themes by overriding color tokens:
-
-```css
-@layer overrides {
-  .theme-forest {
-    --color-bg: oklch(0.96 0.02 140);
-    --color-primary: oklch(0.50 0.15 140);
-    --color-success: oklch(0.55 0.18 140);
-  }
-}
-```
+## Theming & Enhancements
+- **Dark theme** via `.theme-dark` (tokens only; components adapt automatically)
+- **Custom forms** styled with hover/focus/disabled
+- **Micro-interactions**: transitions on interactive elements
+- **Print**: `@media print` simplifies colors, hides non-essential chrome, shows URLs, avoids awkward breaks
 
 ## Accessibility
+- WCAG-aware color choices; visible focus states using tokenized rings
+- Semantic defaults; keyboard-friendly components; no outline removal without replacement
 
-ACSD prioritizes accessibility:
+## Files
+- `acsd.css` — the framework (tokens, base, components, utilities, print)
+- `demo.html` — showcase page using semantic HTML + components/utilities
+- `README.md` — this guide
 
-- ✅ WCAG AA contrast ratios for all text
-- ✅ Visible focus states on all interactive elements
-- ✅ Semantic HTML structure
-- ✅ Keyboard navigation support
-- ✅ Screen reader friendly markup
-- ✅ Reduced motion support (respects `prefers-reduced-motion`)
+## Customization
+- Override tokens in `@layer overrides` or apply theme classes to scopes
+- Extend components or add utilities in your own layer while reusing the tokens
 
-### Focus Styles
+## Limits / Expectations
+- Modern CSS required (`@layer`, custom properties, OKLCH, flex/grid)
+- No JS shipped (demo includes tiny JS for tab toggle only)
+- Single-file distribution by design
 
-All interactive elements receive visible focus indicators:
-
-```css
---focus-ring-width: 2px;
---focus-ring-offset: 2px;
---focus-ring-color: var(--color-primary);
-```
-
-Customize if needed:
-
-```css
-@layer overrides {
-  :root {
-    --focus-ring-width: 3px;
-    --focus-ring-color: var(--color-success);
-  }
-}
-```
-
-## Print Styles
-
-ACSD includes optimized print styles:
-
-- Simplified colors (black and white)
-- URL display for links
-- Page break controls
-- Hidden non-essential components (navbar, badges, buttons)
-
-Test with browser print preview or `@media print` styles.
-
-## Browser Support
-
-ACSD uses modern CSS features and targets:
-
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14.1+
-
-### Required Features
-
-- CSS `@layer`
-- CSS Custom Properties
-- OKLCH color space
-- Flexbox and Grid
-
-For older browser support, consider:
-- Adding PostCSS with appropriate plugins
-- Using a CSS variables polyfill
-- Converting OKLCH to RGB/HSL
-
-## Optional Features Implemented
-
-### ✅ Custom Form Styling
-
-All form elements styled with consistent appearance, hover, focus, and disabled states.
-
-### ✅ Theming Support
-
-Full dark theme included. Color system designed for easy theme creation.
-
-### ✅ Print Stylesheet
-
-Optimized `@media print` rules for clean printed output.
-
-### ✅ Micro-interactions
-
-Smooth transitions on buttons, cards, links, and form elements. Uses CSS transitions for performance.
-
-### ✅ Additional Components
-
-Navbar, table variants, and enhanced form groups beyond the required four components.
-
-## File Structure
-
-```
-project/
-├── acsd.css          # Complete framework
-├── demo.html         # Demo page with examples
-└── README.md         # This file
-```
-
-## Best Practices
-
-### When to Use Classes
-
-- **Never needed:** Basic content (headings, paragraphs, lists, tables)
-- **Component patterns:** Buttons, cards, alerts, complex layouts
-- **Quick adjustments:** Utilities for spacing, alignment, display
-
-### Naming Convention
-
-ACSD uses **BEM (Block Element Modifier)** for components:
-
-```
-.block { }
-.block__element { }
-.block--modifier { }
-```
-
-Examples:
-- `.card`, `.card__header`, `.card--elevated`
-- `.btn`, `.btn--secondary`, `.btn--lg`
-- `.alert`, `.alert__title`, `.alert--success`
-
-### Performance Tips
-
-1. Link ACSD early in `<head>`
-2. Use utilities instead of custom CSS
-3. Limit cascade depth
-4. Avoid `!important` (use layer overrides instead)
-
-## Limitations
-
-- No JavaScript functionality included
-- No grid system (use native CSS Grid)
-- Single file (no modular imports)
-- Requires modern browser support
-- OKLCH colors may need fallbacks for older browsers
-
-## Future Roadmap
-
-- [ ] Component library expansion (modals, tooltips, dropdowns)
-- [ ] Animation utilities
-- [ ] Responsive utilities (@media breakpoints)
-- [ ] Form validation styles
-- [ ] Additional themes
-- [ ] CDN distribution
-- [ ] npm package
-- [ ] Sass/Less source files
-
-## Contributing
-
-This is a learning project for understanding CSS architecture, design systems, and framework development.
-
-## License
-
-MIT License - Feel free to use in your own projects!
-
-## Credits
-
-Built as part of an Advanced CSS & Sass Development course project.
-
----
-
-**Version:** 1.0.0  
-**Last Updated:** December 2025  
-**Author:** ACSD Framework Team
+## Status
+Version: 1.0.0 · Last updated: December 2025
